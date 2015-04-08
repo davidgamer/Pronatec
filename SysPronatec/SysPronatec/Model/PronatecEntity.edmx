@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SysPronatecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Atendimento">
+          <Key>
+            <PropertyRef Name="NumeroAtendimento" />
+          </Key>
+          <Property Name="NumeroAtendimento" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cadastrador" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DataCadastro" Type="datetime" Nullable="false" />
+          <Property Name="UnidadeAtendimento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RespresentanteCadastro" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="FormadeAcesso" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CandidatoIDPessoa" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Candidato">
+          <Key>
+            <PropertyRef Name="IDPessoa" />
+          </Key>
+          <Property Name="IDPessoa" Type="bigint" Nullable="false" />
+          <Property Name="NIS" Type="bigint" Nullable="false" />
+          <Property Name="Profissao" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DisponibilidadeHoraio" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EscolaridadeIdEscolaridade" Type="bigint" Nullable="false" />
+          <Property Name="AtendimentoNumeroAtendimento" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IdCurso" />
+          </Key>
+          <Property Name="IdCurso" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeCurso" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NumeroAtendimento" Type="bigint" Nullable="false" />
+          <Property Name="Local" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Endereço">
+          <Key>
+            <PropertyRef Name="IDEndereco" />
+          </Key>
+          <Property Name="IDEndereco" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rua" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Bairro" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NumeroCasa" Type="smallint" Nullable="false" />
+          <Property Name="Complemento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PessoaIDPessoa" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Escolaridade">
+          <Key>
+            <PropertyRef Name="IdEscolaridade" />
+          </Key>
+          <Property Name="IdEscolaridade" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Escolaridade" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="IDPessoa" />
+          </Key>
+          <Property Name="IDPessoa" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="CPF" Type="bigint" Nullable="false" />
+          <Property Name="DataNas" Type="datetime" Nullable="false" />
+          <Property Name="NomedaMae" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Cor" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EndereçoIDEndereco" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Telefone">
+          <Key>
+            <PropertyRef Name="IDTelefone" />
+          </Key>
+          <Property Name="IDTelefone" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDPessoa" Type="bigint" Nullable="false" />
+          <Property Name="Residencial" Type="smallint" />
+          <Property Name="Celular" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="é uma">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="IDPessoa" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="IDPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAtendiment">
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="1" />
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidato">
+              <PropertyRef Name="IDPessoa" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="CandidatoIDPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCandidato">
+          <End Role="Escolaridade" Type="Self.Escolaridade" Multiplicity="1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escolaridade">
+              <PropertyRef Name="IdEscolaridade" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="EscolaridadeIdEscolaridade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCurso">
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atendimento">
+              <PropertyRef Name="NumeroAtendimento" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="NumeroAtendimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPessoa">
+          <End Role="Endereço" Type="Self.Endereço" Multiplicity="1" />
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereço">
+              <PropertyRef Name="IDEndereco" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="EndereçoIDEndereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTelefone">
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="1" />
+          <End Role="Telefone" Type="Self.Telefone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidato">
+              <PropertyRef Name="IDPessoa" />
+            </Principal>
+            <Dependent Role="Telefone">
+              <PropertyRef Name="IDPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SysPronatecModelStoreContainer">
+          <EntitySet Name="Atendimento" EntityType="Self.Atendimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Candidato" EntityType="Self.Candidato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Endereço" EntityType="Self.Endereço" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Escolaridade" EntityType="Self.Escolaridade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Telefone" EntityType="Self.Telefone" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="é uma" Association="Self.é uma">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FKAtendiment" Association="Self.FKAtendiment">
+            <End Role="Candidato" EntitySet="Candidato" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FKCandidato" Association="Self.FKCandidato">
+            <End Role="Escolaridade" EntitySet="Escolaridade" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FKCurso" Association="Self.FKCurso">
+            <End Role="Atendimento" EntitySet="Atendimento" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FKPessoa" Association="Self.FKPessoa">
+            <End Role="Endereço" EntitySet="Endereço" />
+            <End Role="Pessoa" EntitySet="Pessoa" />
+          </AssociationSet>
+          <AssociationSet Name="FKTelefone" Association="Self.FKTelefone">
+            <End Role="Candidato" EntitySet="Candidato" />
+            <End Role="Telefone" EntitySet="Telefone" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SysPronatecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Atendimento">
+          <Key>
+            <PropertyRef Name="NumeroAtendimento" />
+          </Key>
+          <Property Name="NumeroAtendimento" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cadastrador" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UnidadeAtendimento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RespresentanteCadastro" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FormadeAcesso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CandidatoIDPessoa" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Candidato" Relationship="Self.FKAtendiment" FromRole="Atendimento" ToRole="Candidato" />
+          <NavigationProperty Name="Curso" Relationship="Self.FKCurso" FromRole="Atendimento" ToRole="Curso" />
+        </EntityType>
+        <EntityType Name="Candidato">
+          <Key>
+            <PropertyRef Name="IDPessoa" />
+          </Key>
+          <Property Name="IDPessoa" Type="Int64" Nullable="false" />
+          <Property Name="NIS" Type="Int64" Nullable="false" />
+          <Property Name="Profissao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DisponibilidadeHoraio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EscolaridadeIdEscolaridade" Type="Int64" Nullable="false" />
+          <Property Name="AtendimentoNumeroAtendimento" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Atendimento" Relationship="Self.FKAtendiment" FromRole="Candidato" ToRole="Atendimento" />
+          <NavigationProperty Name="Pessoa" Relationship="Self.é_uma" FromRole="Candidato" ToRole="Pessoa" />
+          <NavigationProperty Name="Escolaridade" Relationship="Self.FKCandidato" FromRole="Candidato" ToRole="Escolaridade" />
+          <NavigationProperty Name="Telefone" Relationship="Self.FKTelefone" FromRole="Candidato" ToRole="Telefone" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IdCurso" />
+          </Key>
+          <Property Name="IdCurso" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeCurso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroAtendimento" Type="Int64" Nullable="false" />
+          <Property Name="Local" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Atendimento" Relationship="Self.FKCurso" FromRole="Curso" ToRole="Atendimento" />
+        </EntityType>
+        <EntityType Name="Endereço">
+          <Key>
+            <PropertyRef Name="IDEndereco" />
+          </Key>
+          <Property Name="IDEndereco" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bairro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroCasa" Type="Int16" Nullable="false" />
+          <Property Name="Complemento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PessoaIDPessoa" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Pessoa" Relationship="Self.FKPessoa" FromRole="Endereço" ToRole="Pessoa" />
+        </EntityType>
+        <EntityType Name="Escolaridade">
+          <Key>
+            <PropertyRef Name="IdEscolaridade" />
+          </Key>
+          <Property Name="IdEscolaridade" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Escolaridade1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Candidato" Relationship="Self.FKCandidato" FromRole="Escolaridade" ToRole="Candidato" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="IDPessoa" />
+          </Key>
+          <Property Name="IDPessoa" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPF" Type="Int64" Nullable="false" />
+          <Property Name="DataNas" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NomedaMae" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EndereçoIDEndereco" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Candidato" Relationship="Self.é_uma" FromRole="Pessoa" ToRole="Candidato" />
+          <NavigationProperty Name="Endereço" Relationship="Self.FKPessoa" FromRole="Pessoa" ToRole="Endereço" />
+        </EntityType>
+        <EntityType Name="Telefone">
+          <Key>
+            <PropertyRef Name="IDTelefone" />
+          </Key>
+          <Property Name="IDTelefone" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDPessoa" Type="Int64" Nullable="false" />
+          <Property Name="Residencial" Type="Int16" />
+          <Property Name="Celular" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Candidato" Relationship="Self.FKTelefone" FromRole="Telefone" ToRole="Candidato" />
+        </EntityType>
+        <Association Name="FKAtendiment">
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="1" />
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidato">
+              <PropertyRef Name="IDPessoa" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="CandidatoIDPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCurso">
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atendimento">
+              <PropertyRef Name="NumeroAtendimento" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="NumeroAtendimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="é_uma">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="IDPessoa" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="IDPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCandidato">
+          <End Role="Escolaridade" Type="Self.Escolaridade" Multiplicity="1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escolaridade">
+              <PropertyRef Name="IdEscolaridade" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="EscolaridadeIdEscolaridade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTelefone">
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="1" />
+          <End Role="Telefone" Type="Self.Telefone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidato">
+              <PropertyRef Name="IDPessoa" />
+            </Principal>
+            <Dependent Role="Telefone">
+              <PropertyRef Name="IDPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPessoa">
+          <End Role="Endereço" Type="Self.Endereço" Multiplicity="1" />
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereço">
+              <PropertyRef Name="IDEndereco" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="EndereçoIDEndereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SysPronatecEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Atendimento" EntityType="Self.Atendimento" />
+          <EntitySet Name="Candidato" EntityType="Self.Candidato" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" />
+          <EntitySet Name="Endereço" EntityType="Self.Endereço" />
+          <EntitySet Name="Escolaridade" EntityType="Self.Escolaridade" />
+          <EntitySet Name="Pessoa" EntityType="Self.Pessoa" />
+          <EntitySet Name="Telefone" EntityType="Self.Telefone" />
+          <AssociationSet Name="FKAtendiment" Association="Self.FKAtendiment">
+            <End Role="Candidato" EntitySet="Candidato" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FKCurso" Association="Self.FKCurso">
+            <End Role="Atendimento" EntitySet="Atendimento" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="é_uma" Association="Self.é_uma">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FKCandidato" Association="Self.FKCandidato">
+            <End Role="Escolaridade" EntitySet="Escolaridade" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FKTelefone" Association="Self.FKTelefone">
+            <End Role="Candidato" EntitySet="Candidato" />
+            <End Role="Telefone" EntitySet="Telefone" />
+          </AssociationSet>
+          <AssociationSet Name="FKPessoa" Association="Self.FKPessoa">
+            <End Role="Endereço" EntitySet="Endereço" />
+            <End Role="Pessoa" EntitySet="Pessoa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SysPronatecModelStoreContainer" CdmEntityContainer="SysPronatecEntities">
+          <EntitySetMapping Name="Atendimento">
+            <EntityTypeMapping TypeName="SysPronatecModel.Atendimento">
+              <MappingFragment StoreEntitySet="Atendimento">
+                <ScalarProperty Name="NumeroAtendimento" ColumnName="NumeroAtendimento" />
+                <ScalarProperty Name="Cadastrador" ColumnName="Cadastrador" />
+                <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+                <ScalarProperty Name="UnidadeAtendimento" ColumnName="UnidadeAtendimento" />
+                <ScalarProperty Name="RespresentanteCadastro" ColumnName="RespresentanteCadastro" />
+                <ScalarProperty Name="FormadeAcesso" ColumnName="FormadeAcesso" />
+                <ScalarProperty Name="CandidatoIDPessoa" ColumnName="CandidatoIDPessoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Candidato">
+            <EntityTypeMapping TypeName="SysPronatecModel.Candidato">
+              <MappingFragment StoreEntitySet="Candidato">
+                <ScalarProperty Name="IDPessoa" ColumnName="IDPessoa" />
+                <ScalarProperty Name="NIS" ColumnName="NIS" />
+                <ScalarProperty Name="Profissao" ColumnName="Profissao" />
+                <ScalarProperty Name="DisponibilidadeHoraio" ColumnName="DisponibilidadeHoraio" />
+                <ScalarProperty Name="EscolaridadeIdEscolaridade" ColumnName="EscolaridadeIdEscolaridade" />
+                <ScalarProperty Name="AtendimentoNumeroAtendimento" ColumnName="AtendimentoNumeroAtendimento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="SysPronatecModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+                <ScalarProperty Name="NomeCurso" ColumnName="NomeCurso" />
+                <ScalarProperty Name="NumeroAtendimento" ColumnName="NumeroAtendimento" />
+                <ScalarProperty Name="Local" ColumnName="Local" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Endereço">
+            <EntityTypeMapping TypeName="SysPronatecModel.Endereço">
+              <MappingFragment StoreEntitySet="Endereço">
+                <ScalarProperty Name="IDEndereco" ColumnName="IDEndereco" />
+                <ScalarProperty Name="Rua" ColumnName="Rua" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="NumeroCasa" ColumnName="NumeroCasa" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+                <ScalarProperty Name="PessoaIDPessoa" ColumnName="PessoaIDPessoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Escolaridade">
+            <EntityTypeMapping TypeName="SysPronatecModel.Escolaridade">
+              <MappingFragment StoreEntitySet="Escolaridade">
+                <ScalarProperty Name="IdEscolaridade" ColumnName="IdEscolaridade" />
+                <ScalarProperty Name="Escolaridade1" ColumnName="Escolaridade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pessoa">
+            <EntityTypeMapping TypeName="SysPronatecModel.Pessoa">
+              <MappingFragment StoreEntitySet="Pessoa">
+                <ScalarProperty Name="IDPessoa" ColumnName="IDPessoa" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="DataNas" ColumnName="DataNas" />
+                <ScalarProperty Name="NomedaMae" ColumnName="NomedaMae" />
+                <ScalarProperty Name="Cor" ColumnName="Cor" />
+                <ScalarProperty Name="EndereçoIDEndereco" ColumnName="EndereçoIDEndereco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Telefone">
+            <EntityTypeMapping TypeName="SysPronatecModel.Telefone">
+              <MappingFragment StoreEntitySet="Telefone">
+                <ScalarProperty Name="IDTelefone" ColumnName="IDTelefone" />
+                <ScalarProperty Name="IDPessoa" ColumnName="IDPessoa" />
+                <ScalarProperty Name="Residencial" ColumnName="Residencial" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

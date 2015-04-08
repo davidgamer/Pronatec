@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="206a27aa166c4fec831b6e5c0c8ae41f" Name="Diagram1">
+        <EntityTypeShape EntityType="SysPronatecModel.Atendimento" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysPronatecModel.Candidato" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysPronatecModel.Curso" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysPronatecModel.Endereço" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysPronatecModel.Escolaridade" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysPronatecModel.Pessoa" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysPronatecModel.Telefone" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="SysPronatecModel.FKAtendiment" ManuallyRouted="false" />
+        <AssociationConnector Association="SysPronatecModel.FKCurso" ManuallyRouted="false" />
+        <AssociationConnector Association="SysPronatecModel.é_uma" ManuallyRouted="false" />
+        <AssociationConnector Association="SysPronatecModel.FKCandidato" ManuallyRouted="false" />
+        <AssociationConnector Association="SysPronatecModel.FKTelefone" ManuallyRouted="false" />
+        <AssociationConnector Association="SysPronatecModel.FKPessoa" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
