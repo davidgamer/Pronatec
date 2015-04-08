@@ -1,10 +1,9 @@
-﻿using System;
+﻿using SysPronatec.Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SysPronatec.Model;
 using System.Data.Entity.Core.Objects;
+using System.Linq;
+
 
 namespace SysPronatec.Data
 {
@@ -54,28 +53,28 @@ namespace SysPronatec.Data
 
 		}
 
-		//	        public string editarPessoa(Telefone t) 
-		//	        {
-		//	            string erro = null;
-		//	            try
-		//	            {
-		//	                if (t.EntityState == System.Data.EntityState.Detached)
-		//	                {
-		//	                    db.Telefone.Attach(t);
-		//	                }
-		//	                db.ObjectStateManager.ChangeObjectState(t, System.Data.EntityState.Modified);
-		//	                db.SaveChanges();
-		//	            }
-		//	            catch (Exception ex)
-		//	            {
-		//	                erro = ex.Message;
-		//	            }
-		//	            return erro;
-		//	        
-		//	        
-		//	        
-		//	        
-		//	        }
+			        public string editarPessoa(Telefone t) 
+			        {
+			            string erro = null;
+			            try
+			            {
+			                if (t.EntityState == System.Data.EntityState.Detached)
+			                {
+			                    db.Telefone.Attach(t);
+			                }
+			                db.ObjectStateManager.ChangeObjectState(t, System.Data.EntityState.Modified);
+			                db.SaveChanges();
+			            }
+			            catch (Exception ex)
+			            {
+			                erro = ex.Message;
+			            }
+			            return erro;
+			        
+			        
+			        
+			        
+			        }
 
 		public string excluirTelefone(Telefone t){
 

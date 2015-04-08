@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SysPronatec.Model;
 using System.Data.Entity.Core.Objects;
+using SysPronatec.Data;
 
 
 namespace SysPronatec.Data
@@ -20,10 +21,7 @@ namespace SysPronatec.Data
 		public List<Escolaridade> todasEscolaridades(){
 		
 		
-			var lista = from es in db.Escolaridade
-			            select es;
-			return lista.ToList ();
-		
+			return escolaridades.ToList ();
 		
 		}
 
@@ -41,10 +39,46 @@ namespace SysPronatec.Data
 
 
 				}
+
+			return erro;
 			
 		
 		
 		}
+
+		public Escolaridade obterEscolaridade(int IdEscolaridade){
+
+
+			var lista = from es in db.Escolaridade
+					where es.IdEscolaridade == IdEscolaridade
+					select es;
+				return lista.ToList().FirstOrDefault();
+
+
+		}
+
+		public string editarEscolaridade(Escolaridade es){
+		
+			string erro = null;
+
+			try{
+			db.Escolaridade.Attach (es);
+				db.SaveChanges();
+			}catch(Exception ex) {
+			
+				erro =	ex.Message;
+			}
+
+
+
+
+		
+			return erro;
+		}
+
+
+
+
 
 
 
