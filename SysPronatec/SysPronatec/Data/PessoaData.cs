@@ -101,9 +101,6 @@ namespace SysPronatec.Data
             }
             return erro;
         
-        
-        
-        
         }
     }
 }
