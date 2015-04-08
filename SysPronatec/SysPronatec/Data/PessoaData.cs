@@ -14,7 +14,9 @@ using System.Web;
 using System.Data.Entity.Core.Objects;
 using SysPronatec.Model;
 
+
 namespace SysPronatec.Data
+
 {
     class PessoaData
     {
@@ -63,28 +65,28 @@ namespace SysPronatec.Data
         
         }
 
-        public string editarPessoa(Pessoa p) 
-        {
-            string erro = null;
-            try
-            {
-                if (p.EntityState == System.Data.EntityState.Detached)
-                {
-                    db.Pessoa.Attach(p);
-                }
-                db.ObjectStateManager.ChangeObjectState(p, System.Data.EntityState.Modified);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                erro = ex.Message;
-            }
-            return erro;
-        
-        
-        
-        
-        }
+//	        public string editarPessoa(Pessoa p) 
+//	        {
+//	            string erro = null;
+//	            try
+//	            {
+//	                if (p.EntityState == System.Data.EntityState.Detached)
+//	                {
+//	                    db.Pessoa.Attach(p);
+//	                }
+//	                db.ObjectStateManager.ChangeObjectState(p, System.Data.EntityState.Modified);
+//	                db.SaveChanges();
+//	            }
+//	            catch (Exception ex)
+//	            {
+//	                erro = ex.Message;
+//	            }
+//	            return erro;
+//	        
+//	        
+//	        
+//	        
+//	        }
 
         public string excluirPessoa(Pessoa p){
         
@@ -92,7 +94,7 @@ namespace SysPronatec.Data
              string erro = null;
             try
             {
-                db.Pessoa.Remove(p);
+				db.Pessoa.Remove(p);
                 db.SaveChanges();
             }
             catch (Exception ex)
