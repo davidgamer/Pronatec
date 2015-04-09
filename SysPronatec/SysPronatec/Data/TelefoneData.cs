@@ -6,16 +6,19 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 
 
+
 namespace SysPronatec.Data
 {
     class TelefoneData
     {
 
-		private SysPronatecEntities db = new SysPronatecEntities();
+        private SysPronatecEntities db;
 
-		private ObjectSet<Telefone> telefones;
+		
 
-		public List<Telefone> todasPessoas()
+
+
+		public List<Telefone> todosTelefones()
 		{
 
 			var lista =  from t in db.Telefone    
@@ -29,7 +32,10 @@ namespace SysPronatec.Data
 		{
 			string erro = null;
 			try
+
 			{
+
+
 				db.Telefone.Add (t);
 				db.SaveChanges();
 			}
@@ -54,7 +60,7 @@ namespace SysPronatec.Data
 
 		}
 
-			        public string editarPessoa(Telefone t) 
+          public string editarPessoa(Telefone t) 
 			        {
 			            string erro = null;
 			            try
