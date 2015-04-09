@@ -12,13 +12,13 @@ namespace SysPronatec.Data
     class TelefoneData
     {
 
-        private SysPronatecEntities db;
+        private SysPronatecEntities db = new SysPronatecEntities();
 
-		
+        
 
 
 
-		public List<Telefone> todosTelefones()
+		 public List<Telefone> todosTelefones()
 		{
 
 			var lista =  from t in db.Telefone    
@@ -28,7 +28,7 @@ namespace SysPronatec.Data
 		}
 
 
-		public string adicionarTelefone(Telefone t) 
+		 public string adicionarTelefone(Telefone t) 
 		{
 			string erro = null;
 			try
@@ -47,7 +47,7 @@ namespace SysPronatec.Data
 
 		}
 
-		public Telefone obterTelefone(int IDTelefone) 
+		 public Telefone obterTelefone(int IDTelefone) 
 		{
 
 			var lista = from t in db.Telefone
@@ -60,7 +60,7 @@ namespace SysPronatec.Data
 
 		}
 
-          public string editarPessoa(Telefone t) 
+         public string editarPessoa(Telefone t) 
 			        {
 			            string erro = null;
 			            try
@@ -81,7 +81,7 @@ namespace SysPronatec.Data
 			        
 			        }
 
-		public string excluirTelefone(Telefone t){
+		 public string excluirTelefone(Telefone t){
 
 
 			string erro = null;

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.Core.Objects;
 using SysPronatec.Model;
+using System.Data.Entity;
 
 
 namespace SysPronatec.Data
@@ -24,7 +25,7 @@ namespace SysPronatec.Data
 
         private SysPronatecEntities db = new SysPronatecEntities();
 
-        private ObjectSet<Pessoa> pessoas;
+      
 
         public List<Pessoa> todasPessoas()
         {
@@ -65,28 +66,24 @@ namespace SysPronatec.Data
         
         }
 
-//	        public string editarPessoa(Pessoa p) 
-//	        {
-//	            string erro = null;
-//	            try
-//	            {
-//	                if (p.EntityState == System.Data.EntityState.Detached)
-//	                {
-//	                    db.Pessoa.Attach(p);
-//	                }
-//	                db.ObjectStateManager.ChangeObjectState(p, System.Data.EntityState.Modified);
-//	                db.SaveChanges();
-//	            }
-//	            catch (Exception ex)
-//	            {
-//	                erro = ex.Message;
-//	            }
-//	            return erro;
-//	        
-//	        
-//	        
-//	        
-//	        }
+	    public string editarPessoa(Pessoa p) 
+	        {
+	            string erro = null;
+	            try{
+
+	               db.Entry(p).State = EntityState.Modified;
+                   db.SaveChanges();
+	            }
+	            catch (Exception ex)
+	            {
+	                erro = ex.Message;
+	            }
+	            return erro;
+	        
+	        	        
+	        
+	        }
+
 
         public string excluirPessoa(Pessoa p){
         

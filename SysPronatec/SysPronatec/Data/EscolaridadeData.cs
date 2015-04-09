@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SysPronatec.Model;
 using System.Data.Entity.Core.Objects;
-using SysPronatec.Data;
 
 
 namespace SysPronatec.Data
@@ -15,13 +12,15 @@ namespace SysPronatec.Data
 
 		private SysPronatecEntities db = new SysPronatecEntities();
 
-		private  ObjectSet<Escolaridade> escolaridades;
+	
 
 
 		public List<Escolaridade> todasEscolaridades(){
-		
-		
-			return escolaridades.ToList ();
+
+
+            var lista = from es in db.Escolaridade
+                        select es;
+            return lista.ToList();
 		
 		}
 
@@ -76,7 +75,20 @@ namespace SysPronatec.Data
 			return erro;
 		}
 
-
+        public string excluirEscolaridade(Escolaridade es)
+        {
+            string erro = null;
+            try
+            {
+                db.Escolaridade.Remove(es);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                erro = ex.Message;
+            }
+            return erro;
+        }
 
 
 
