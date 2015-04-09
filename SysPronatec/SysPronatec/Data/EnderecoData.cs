@@ -47,26 +47,26 @@ namespace SysPronatec.Data
 
         }
 
-        public Escolaridade obterEndereco(int IdEscolaridade)
+        public Escolaridade obterEndereco(int IdEndereco)
         {
 
 
-            var lista = from es in db.Escolaridade
-                        where es.IdEscolaridade == IdEscolaridade
-                        select es;
+            var lista = from ed in db.Escolaridade
+                        where ed.IdEscolaridade == IdEndereco
+                        select ed;
             return lista.ToList().FirstOrDefault();
 
 
         }
 
-        public string editarEndereco(Escolaridade es)
+        public string editarEndereco(Endereço ed)
         {
 
             string erro = null;
 
             try
             {
-                db.Escolaridade.Attach(es);
+                db.Endereço.Attach(ed);
                 db.SaveChanges();
             }
             catch (Exception ex)
@@ -82,12 +82,12 @@ namespace SysPronatec.Data
             return erro;
         }
 
-        public string excluirEndereco(Escolaridade es)
+        public string excluirEndereco(Endereço ed)
         {
             string erro = null;
             try
             {
-                db.Escolaridade.Remove(es);
+                db.Endereço.Remove(ed);
                 db.SaveChanges();
             }
             catch (Exception ex)
