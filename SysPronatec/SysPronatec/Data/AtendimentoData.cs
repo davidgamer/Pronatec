@@ -48,7 +48,7 @@ namespace SysPronatec.Data
         public Atendimento obterAtendimento  (int numeroAtendimento ) 
         {
 
-            var lista = from at in db.Pessoa
+            var lista = from at in db.Atendimento
                         where at.NumeroAtendimento == numeroAtendimento
                         select at;
             return lista.ToList().FirstOrDefault();
@@ -86,7 +86,7 @@ namespace SysPronatec.Data
              string erro = null;
             try
             {
-				db.Pessoa.Remove(at);
+				db.Atendimento.Remove(at);
                 db.SaveChanges();
             }
             catch (Exception ex)
