@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SysPronatec
 {
-    public partial class Form1 : Form
+    public partial class SysPronatec : Form
     {
-        public Form1()
+        public SysPronatec()
         {
             InitializeComponent();
         }
