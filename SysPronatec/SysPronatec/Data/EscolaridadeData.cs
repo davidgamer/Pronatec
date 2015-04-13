@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SysPronatec.Model;
-using System.Data.Entity.Core.Objects;
+using System.Data.Objects;
 
 
 namespace SysPronatec.Data

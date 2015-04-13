@@ -1,9 +1,8 @@
 ﻿using SysPronatec.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Data.Entity.Validation;
 
 
 
@@ -13,6 +12,8 @@ namespace SysPronatec.Data
     {
 
         private SysPronatecEntities db = new SysPronatecEntities();
+
+        
 
         
 
@@ -60,24 +61,22 @@ namespace SysPronatec.Data
 
 		}
 
-         public string editarPessoa(Telefone t) 
+         public string editarTelefone(Telefone t) 
 			        {
 			            string erro = null;
 			            try
 			            {
-                            db.Entry(t).State = EntityState.Modified;
-                            db.SaveChanges();
-
-
+                            db.Telefone.Attach(t);
+                          
 			            }
 			            catch (Exception ex)
 			            {
 			                erro = ex.Message;
 			            }
-			            return erro;
-			        
-			        
-			        
+			           
+                        db.SaveChanges();
+
+                        return erro;
 			        
 			        }
 

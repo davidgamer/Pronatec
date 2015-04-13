@@ -11,9 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Entity.Core.Objects;
+using System.Data.Objects;
 using SysPronatec.Model;
 using System.Data.Entity;
+using System.Data;
 
 
 namespace SysPronatec.Data
@@ -71,13 +72,16 @@ namespace SysPronatec.Data
 	            string erro = null;
 	            try{
 
-	               db.Entry(p).State = EntityState.Modified;
-                   db.SaveChanges();
+	               db.Pessoa.Attach(p); 
+                   
 	            }
 	            catch (Exception ex)
 	            {
 	                erro = ex.Message;
 	            }
+
+
+                db.SaveChanges();
 	            return erro;
 	        
 	        	        

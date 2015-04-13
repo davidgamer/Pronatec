@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SysPronatec</RootNamespace>
     <AssemblyName>SysPronatec</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,18 +32,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.Services" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Selectors" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Entity.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,9 +60,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Data.Entity.Design" />
   </ItemGroup>
@@ -73,40 +78,40 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Atendimento.cs">
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Candidato.cs">
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Curso.cs">
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Endereço.cs">
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Escolaridade.cs">
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Pessoa.cs">
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PronatecEntity.Context.cs">
+    <Compile Include="Model\PronatecEntitys.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PronatecEntity.Context.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PronatecEntity.cs">
+    <Compile Include="Model\PronatecEntitys.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PronatecEntity.Designer.cs">
+    <Compile Include="Model\PronatecEntitys.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PronatecEntity.edmx</DependentUpon>
+      <DependentUpon>PronatecEntitys.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Telefone.cs">
-      <DependentUpon>PronatecEntity.tt</DependentUpon>
+      <DependentUpon>PronatecEntitys.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,23 +123,24 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="Model\PronatecEntity.edmx">
+    <EntityDeploy Include="Model\PronatecEntitys.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PronatecEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>PronatecEntitys.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\PronatecEntity.Context.tt">
+    <None Include="Model\PronatecEntitys.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PronatecEntity.edmx</DependentUpon>
-      <LastGenOutput>PronatecEntity.Context.cs</LastGenOutput>
+      <DependentUpon>PronatecEntitys.edmx</DependentUpon>
+      <LastGenOutput>PronatecEntitys.Context.cs</LastGenOutput>
     </None>
-    <None Include="Model\PronatecEntity.edmx.diagram">
-      <DependentUpon>PronatecEntity.edmx</DependentUpon>
+    <None Include="Model\PronatecEntitys.edmx.diagram">
+      <DependentUpon>PronatecEntitys.edmx</DependentUpon>
     </None>
-    <None Include="Model\PronatecEntity.tt">
+    <None Include="Model\PronatecEntitys.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PronatecEntity.edmx</DependentUpon>
-      <LastGenOutput>PronatecEntity.cs</LastGenOutput>
+      <DependentUpon>PronatecEntitys.edmx</DependentUpon>
+      <LastGenOutput>PronatecEntitys.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

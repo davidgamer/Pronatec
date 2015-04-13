@@ -9,7 +9,8 @@ namespace SysPronatec.Data
 {
     class CursoData
     {
-        private SysPronatecEntities db = new SysPronatecEntities();
+        private SysPronatecEntities db;
+     
 
 
         public List<Curso> todosCursos() {
@@ -22,10 +23,69 @@ namespace SysPronatec.Data
         
         }
 
+        public string adicionarCurso(Curso curso) 
+        {
+
+            string erro = null;
+            try
+            {
 
 
 
+                if (curso.IdCurso == 0)
+                {
+                    db.Curso.Add(curso);
+                  
+                }
+                else
+                {
+
+                    
+                   db.Curso.Attach(curso);
+                }
 
 
+            }
+            catch (Exception ex)
+            {
+                erro = ex.Message;
+            }
+
+            db.SaveChanges();
+            return erro;
+        
+        
+        
+        }
+
+        public Curso obterCurso(int IdCurso) {
+
+            var lista = from cu in db.Curso
+                        where cu.IdCurso == IdCurso
+                        select cu;
+            return lista.ToList().FirstOrDefault();
+        
+        
+        
+        }
+
+        public string excluiCurso(Curso curso)
+        
+        {
+
+            string erro = null;
+            try
+            {
+                db.Curso.Remove(curso);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                erro = ex.Message;
+            }
+            return erro;
+        
+        }
+        
     }
 }
