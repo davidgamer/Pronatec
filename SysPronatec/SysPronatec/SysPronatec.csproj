@@ -174,6 +174,8 @@
   <ItemGroup>
     <Content Include="Imagens\check13.png" />
     <Content Include="Imagens\ic_account_box_black_18dp.png" />
+    <Content Include="Imagens\ic_account_child_black_18dp.png" />
+    <Content Include="Imagens\ic_done_all_black_18dp.png" />
     <Content Include="Imagens\ic_pageview_black_18dp.png" />
     <Content Include="Imagens\image.png" />
   </ItemGroup>

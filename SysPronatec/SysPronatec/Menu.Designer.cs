@@ -55,9 +55,11 @@
             // 
             // novoCandidatoToolStripMenuItem
             // 
+            this.novoCandidatoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("novoCandidatoToolStripMenuItem.Image")));
             this.novoCandidatoToolStripMenuItem.Name = "novoCandidatoToolStripMenuItem";
             this.novoCandidatoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.novoCandidatoToolStripMenuItem.Text = "Novo Candidato";
+            this.novoCandidatoToolStripMenuItem.Click += new System.EventHandler(this.novoCandidatoToolStripMenuItem_Click);
             // 
             // SysPronatec
             // 
