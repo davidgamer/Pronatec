@@ -16,5 +16,14 @@ namespace SysPronatec.View
         {
             InitializeComponent();
         }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

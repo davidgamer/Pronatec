@@ -110,21 +110,23 @@
             // 
             // btnProximo
             // 
-            this.btnProximo.Location = new System.Drawing.Point(26, 298);
+            this.btnProximo.Location = new System.Drawing.Point(26, 297);
             this.btnProximo.Name = "btnProximo";
-            this.btnProximo.Size = new System.Drawing.Size(92, 27);
+            this.btnProximo.Size = new System.Drawing.Size(101, 22);
             this.btnProximo.TabIndex = 9;
             this.btnProximo.Text = "Proximo";
             this.btnProximo.UseVisualStyleBackColor = true;
+            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(459, 297);
+            this.btnCancelar.Location = new System.Drawing.Point(464, 297);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(88, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(88, 22);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // CadastroEnderecos
             // 
