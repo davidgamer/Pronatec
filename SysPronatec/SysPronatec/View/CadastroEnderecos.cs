@@ -12,6 +12,9 @@ namespace SysPronatec.View
 {
     public partial class CadastroEnderecos : Form
     {
+
+        Atendimento at = new Atendimento();
+
         public CadastroEnderecos()
         {
             InitializeComponent();
@@ -19,6 +22,9 @@ namespace SysPronatec.View
 
         private void btnProximo_Click(object sender, EventArgs e)
         {
+            this.Visible = false;
+
+            at.ShowDialog();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -76,18 +76,18 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(-2, 346);
+            this.btnSalvar.Location = new System.Drawing.Point(9, 346);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(119, 30);
+            this.btnSalvar.Size = new System.Drawing.Size(92, 30);
             this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(656, 345);
+            this.btnCancelar.Location = new System.Drawing.Point(668, 345);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(141, 31);
+            this.btnCancelar.Size = new System.Drawing.Size(118, 31);
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -121,6 +121,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "Atendimento";
             this.Text = "Atendimento";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
