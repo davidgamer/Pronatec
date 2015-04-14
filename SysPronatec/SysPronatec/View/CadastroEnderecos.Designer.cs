@@ -36,6 +36,8 @@
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtNumCasa = new System.Windows.Forms.TextBox();
             this.txtComplemento = new System.Windows.Forms.TextBox();
+            this.btnProximo = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +64,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(26, 156);
+            this.label3.Location = new System.Drawing.Point(26, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 15);
             this.label3.TabIndex = 2;
@@ -72,7 +74,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(26, 248);
+            this.label5.Location = new System.Drawing.Point(26, 216);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 15);
             this.label5.TabIndex = 4;
@@ -94,23 +96,43 @@
             // 
             // txtNumCasa
             // 
-            this.txtNumCasa.Location = new System.Drawing.Point(116, 157);
+            this.txtNumCasa.Location = new System.Drawing.Point(115, 130);
             this.txtNumCasa.Name = "txtNumCasa";
             this.txtNumCasa.Size = new System.Drawing.Size(196, 20);
             this.txtNumCasa.TabIndex = 7;
             // 
             // txtComplemento
             // 
-            this.txtComplemento.Location = new System.Drawing.Point(115, 243);
+            this.txtComplemento.Location = new System.Drawing.Point(115, 211);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(197, 20);
             this.txtComplemento.TabIndex = 8;
+            // 
+            // btnProximo
+            // 
+            this.btnProximo.Location = new System.Drawing.Point(26, 298);
+            this.btnProximo.Name = "btnProximo";
+            this.btnProximo.Size = new System.Drawing.Size(92, 27);
+            this.btnProximo.TabIndex = 9;
+            this.btnProximo.Text = "Proximo";
+            this.btnProximo.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(459, 297);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(88, 27);
+            this.btnCancelar.TabIndex = 10;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // CadastroEnderecos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 437);
+            this.ClientSize = new System.Drawing.Size(564, 327);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnProximo);
             this.Controls.Add(this.txtComplemento);
             this.Controls.Add(this.txtNumCasa);
             this.Controls.Add(this.txtBairro);
@@ -137,5 +159,7 @@
         private System.Windows.Forms.TextBox txtBairro;
         private System.Windows.Forms.TextBox txtNumCasa;
         private System.Windows.Forms.TextBox txtComplemento;
+        private System.Windows.Forms.Button btnProximo;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
