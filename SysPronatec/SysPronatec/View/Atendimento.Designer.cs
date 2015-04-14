@@ -36,6 +36,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFormaAcesso = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbxUnidadeAT = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +58,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 85);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(497, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(480, 213);
             this.dataGridView1.TabIndex = 1;
             // 
             // label2
@@ -91,6 +95,7 @@
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label3
             // 
@@ -108,11 +113,48 @@
             this.txtPesquisar.Size = new System.Drawing.Size(252, 20);
             this.txtPesquisar.TabIndex = 7;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(512, 96);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Forma De Acesso";
+            // 
+            // txtFormaAcesso
+            // 
+            this.txtFormaAcesso.Location = new System.Drawing.Point(618, 89);
+            this.txtFormaAcesso.Name = "txtFormaAcesso";
+            this.txtFormaAcesso.Size = new System.Drawing.Size(168, 20);
+            this.txtFormaAcesso.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(512, 146);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(126, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Unidade De Atendimento";
+            // 
+            // cbxUnidadeAT
+            // 
+            this.cbxUnidadeAT.FormattingEnabled = true;
+            this.cbxUnidadeAT.Location = new System.Drawing.Point(656, 143);
+            this.cbxUnidadeAT.Name = "cbxUnidadeAT";
+            this.cbxUnidadeAT.Size = new System.Drawing.Size(130, 21);
+            this.cbxUnidadeAT.TabIndex = 11;
+            // 
             // Atendimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 383);
+            this.Controls.Add(this.cbxUnidadeAT);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtFormaAcesso);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancelar);
@@ -140,5 +182,9 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPesquisar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtFormaAcesso;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbxUnidadeAT;
     }
 }
