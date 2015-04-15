@@ -17,7 +17,12 @@ namespace SysPronatec.Data
 
         private SysPronatecEntities db;
 
-      
+        public AtendimentoData(SysPronatecEntities _db)
+        {
+
+            this.db = _db;
+        
+        }
 
         public List<Atendimento> todosAtendimentios()
         {

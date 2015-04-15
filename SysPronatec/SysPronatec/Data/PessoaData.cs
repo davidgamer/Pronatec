@@ -25,15 +25,7 @@ namespace SysPronatec.Data
 
 
         private SysPronatecEntities db = new SysPronatecEntities();
-        private ObjectSet<Pessoa> pessoas;
-
-        public PessoaData(SysPronatecEntities db)
-        {
-
-            this.db = db;
-                       
         
-        }
 
 
       

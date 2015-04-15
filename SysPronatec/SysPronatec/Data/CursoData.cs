@@ -10,6 +10,14 @@ namespace SysPronatec.Data
     class CursoData
     {
         private SysPronatecEntities db;
+
+
+        public CursoData(SysPronatecEntities _db)
+        {
+
+            this.db = _db;
+        
+        }
      
 
 

@@ -13,6 +13,12 @@ namespace SysPronatec.Data
 
         private SysPronatecEntities db;
 
+        public CandidatoData(SysPronatecEntities _db)
+        {
+
+            this.db = _db;
+        
+        }
 
 
            public List<Candidato> todosCandidatos()
