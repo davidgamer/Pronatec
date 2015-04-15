@@ -26,10 +26,11 @@ namespace SysPronatec.Data
 
         private SysPronatecEntities db = new SysPronatecEntities();
 
-        public PessoaData()
+        public PessoaData(SysPronatecEntities _db)
         {
 
-            this.db = db;
+            this.db = _db;
+            
         
         }
 
