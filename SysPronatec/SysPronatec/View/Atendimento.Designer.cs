@@ -40,6 +40,7 @@
             this.txtFormaAcesso = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxUnidadeAT = new System.Windows.Forms.ComboBox();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,7 +133,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(512, 146);
+            this.label5.Location = new System.Drawing.Point(509, 134);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(126, 13);
             this.label5.TabIndex = 10;
@@ -141,16 +142,26 @@
             // cbxUnidadeAT
             // 
             this.cbxUnidadeAT.FormattingEnabled = true;
-            this.cbxUnidadeAT.Location = new System.Drawing.Point(656, 143);
+            this.cbxUnidadeAT.Location = new System.Drawing.Point(641, 126);
             this.cbxUnidadeAT.Name = "cbxUnidadeAT";
             this.cbxUnidadeAT.Size = new System.Drawing.Size(130, 21);
             this.cbxUnidadeAT.TabIndex = 11;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.Location = new System.Drawing.Point(362, 40);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(72, 20);
+            this.btnPesquisar.TabIndex = 12;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.UseVisualStyleBackColor = true;
             // 
             // Atendimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 383);
+            this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.cbxUnidadeAT);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtFormaAcesso);
@@ -186,5 +197,6 @@
         private System.Windows.Forms.TextBox txtFormaAcesso;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbxUnidadeAT;
+        private System.Windows.Forms.Button btnPesquisar;
     }
 }
