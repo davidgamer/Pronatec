@@ -26,6 +26,14 @@ namespace SysPronatec.Data
 
         private SysPronatecEntities db = new SysPronatecEntities();
 
+        public PessoaData()
+        {
+
+            this.db = db;
+        
+        }
+
+
       
 
         public List<Pessoa> todasPessoas()
