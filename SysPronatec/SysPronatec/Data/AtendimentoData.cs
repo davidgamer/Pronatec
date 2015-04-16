@@ -16,11 +16,12 @@ namespace SysPronatec.Data
 
 
         private SysPronatecEntities db;
+       
 
-        public AtendimentoData(SysPronatecEntities _db)
+        public AtendimentoData()
         {
 
-            this.db = _db;
+            this.db = new SysPronatecEntities();
         
         }
 
@@ -30,6 +31,9 @@ namespace SysPronatec.Data
         var lista = from at in db.Atendimento
             select at;
             return lista.ToList();
+           
+
+            
         
         }
 

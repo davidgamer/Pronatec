@@ -13,10 +13,10 @@ namespace SysPronatec.Data
 
         private SysPronatecEntities db;
 
-        public CandidatoData(SysPronatecEntities _db)
+        public CandidatoData()
         {
 
-            this.db = _db;
+            this.db = new SysPronatecEntities();
         
         }
 

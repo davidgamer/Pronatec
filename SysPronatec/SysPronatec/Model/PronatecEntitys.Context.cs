@@ -18,7 +18,6 @@ namespace SysPronatec.Model
         public SysPronatecEntities()
             : base("name=SysPronatecEntities")
         {
-            
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
